@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokenpo JS</title>
+</head>
+<body>
+    <h1>Jokenpo Battle ✂️📃🪨</h1>
+    <canvas id="game"></canvas>
+    <div>
+        <span id="rockcnt"></span>
+        <span id="papercnt"></span>
+        <span id="scissorscnt"></span>
+    </div>
+    <div>
+        <p>Run Game</p>
+        <button id="startBtn"">Start</button>
+        <button id="stopBtn">Stop</button>
+        <button id="resetBtn">Reset</button>
+        <label for="restart">Auto Restart</label>
+        <input type="checkbox" id="autoRestart" name="restart" value="restart" checked>
+    </div>
+    <div>
+        <p>Game Mode</p>
+        <label for="elimination">Elimination</label>
+        <input type="radio" name="mode" id="elimination" value="0" checked>
+        <label for="assimilation">Assimilation</label>
+        <input type="radio" name="mode" id="assimilation" value="1">
+    </div>
+    <div>
+        <p>Players</p>
+        <label for="players">Players per Team</label>
+        <input type="number" id="players" name="players" min="1" max="100" step="1" value="10">
+        <label for="speed">Player's speed</label>
+        <input type="range" min="0.5" max="3" value="1" step="0.5" id="speed">
+    </div>
+    <script src="game.js"></script>
+    <script src="player.js"></script>
+    <script src="utils.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

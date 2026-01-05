@@ -1,0 +1,74 @@
+# ===============================
+# Operating System
+# ===============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===============================
+# Logs
+# ===============================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===============================
+# Node / Package Managers
+# ===============================
+node_modules/
+.pnp/
+.pnp.js
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ===============================
+# Build & Bundlers
+# ===============================
+dist/
+build/
+.cache/
+.parcel-cache/
+.vite/
+.esbuild/
+
+# ===============================
+# IDEs & Editors
+# ===============================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# ===============================
+# Testing & Coverage
+# ===============================
+coverage/
+.nyc_output/
+
+# ===============================
+# Temporary & Backup Files
+# ===============================
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+*.save
+
+# ===============================
+# Browser tools
+# ===============================
+playwright-report/
+cypress/videos/
+cypress/screenshots/
+
+# ===============================
+# Optional assets
+# ===============================
+assets/raw/
+assets/tmp/

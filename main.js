@@ -1,0 +1,78 @@
+const canvas = document.getElementById("game");
+canvas.width = 800;
+canvas.height = 600;
+
+let game = null;
+let animationId = null;
+let lastTime = 0;
+
+function getSettings() {
+    const teamSize = parseInt(document.getElementById("players").value);
+    const speed = parseFloat(document.getElementById("speed").value);
+    const autoRestart = document.getElementById("autoRestart").checked;
+    const modeValue = parseInt(document.querySelector("input[name='mode']:checked").value);
+    const mode = modeValue ? GAMEMODE.assimilation : GAMEMODE.elimination;
+
+    return {
+        teamSize,
+        speed,
+        autoRestart,
+        mode
+    };
+}
+
+function startGame() {
+    if (game && game.running) return; // avoid double loops
+
+    const { teamSize, speed, autoRestart, mode } = getSettings();
+
+    if (!game) {
+        game = new Game(canvas, teamSize, mode, speed, autoRestart);
+    }
+
+    game.running = true;
+    game.autoRestart = autoRestart;
+    game.speedMultiplier = speed;
+    game.teamSize = teamSize;
+    game.gameMode = mode;
+    
+    lastTime = performance.now();
+    animationId = requestAnimationFrame(runLoop);
+}
+
+function runLoop(timestamp) {
+    if (!game || !game.running) return;
+
+    const dt = Math.min((timestamp - lastTime) / 1000, 0.033);
+    lastTime = timestamp;
+
+    game.update(dt);
+    game.draw();
+
+    // Start animation loop and get its ID
+    animationId = requestAnimationFrame(runLoop);
+}
+
+function stopGame() {
+    if (!game) return;
+
+    if (game.running){
+        game.running = false;
+        // Stop current animation loop
+        cancelAnimationFrame(animationId);
+    }
+}
+
+function resetGame() {
+    stopGame();
+
+    const { teamSize, speed, autoRestart, mode } = getSettings();
+
+    game = new Game(canvas, teamSize, mode, speed, autoRestart);
+
+    startGame();
+}
+
+document.getElementById("startBtn").onclick = startGame;
+document.getElementById("stopBtn").onclick = stopGame;
+document.getElementById("resetBtn").onclick = resetGame;
