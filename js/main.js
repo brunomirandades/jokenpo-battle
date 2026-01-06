@@ -31,6 +31,8 @@ function getSettings() {
 function startGame() {
     if (game && game.running) return; // avoid double loops
 
+    // TODO: Limit the size of teams based on canvas size
+    // around 50 for Mobile and 100 for Desktop
     const { teamSize, speed, autoRestart, mode } = getSettings();
 
     if (!game) {
