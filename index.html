@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jokenpo JS</title>
+    <style>
+        /* Mobile layout */
+        #gameContainer {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        /* Keep desktop original size */
+        @media (min-width: 900px) {
+            #gameContainer {
+                justify-content: flex-start;
+                margin-top: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Jokenpo Battle ✂️📃🪨</h1>
-    <canvas id="game"></canvas>
+    <div id="gameContainer">
+        <canvas id="game"></canvas>
+    </div>
     <div>
         <span id="rockcnt"></span>
         <span id="papercnt"></span>

@@ -6,6 +6,13 @@ let game = null;
 let animationId = null;
 let lastTime = 0;
 
+resizeCanvas(canvas);
+window.addEventListener("resize", () => resizeCanvas(canvas));
+
+document.getElementById("startBtn").onclick = startGame;
+document.getElementById("stopBtn").onclick = stopGame;
+document.getElementById("resetBtn").onclick = resetGame;
+
 function getSettings() {
     const teamSize = parseInt(document.getElementById("players").value);
     const speed = parseFloat(document.getElementById("speed").value);
@@ -73,6 +80,20 @@ function resetGame() {
     startGame();
 }
 
-document.getElementById("startBtn").onclick = startGame;
-document.getElementById("stopBtn").onclick = stopGame;
-document.getElementById("resetBtn").onclick = resetGame;
+function resizeCanvas(canvas) {
+    const isMobile = window.innerWidth < 900;
+
+    if (isMobile) {
+        canvas.width = Math.min(window.innerWidth, 360);
+        canvas.height = Math.floor(window.innerHeight * 0.7);
+    } else {
+        canvas.width = 800;
+        canvas.height = 600;
+    }
+
+    if (game) {
+        game.width = canvas.width;
+        game.height = canvas.height;
+        resetGame();
+    }
+}
